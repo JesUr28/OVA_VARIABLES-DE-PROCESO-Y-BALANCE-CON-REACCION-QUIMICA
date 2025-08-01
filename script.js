@@ -12,23 +12,6 @@ let utterance = null
 let isSpeaking = false
 let listenBtn = null
 
-// function isMobileOrTablet() {
-//   return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
-// }
-
-// window.addEventListener("DOMContentLoaded", () => {
-//   const deviceWarning = document.getElementById("deviceWarning");
-//   const appContainer = document.getElementById("appContainer"); // envoltorio principal de tu app (ver abajo)
-
-//   if (isMobileOrTablet()) {
-//     deviceWarning.style.display = "flex";
-//     if (appContainer) appContainer.style.display = "none";
-//   } else {
-//     deviceWarning.style.display = "none";
-//     if (appContainer) appContainer.style.display = "block";
-//   }
-// });
-
 // Banco de preguntas personalizado para cada tema
 const customTestQuestions = {
   // Módulo 1
@@ -269,7 +252,7 @@ const modulesData = {
         id: 1,
         title: "Isla de la presión",
         icon: "fas fa-anchor",
-        image: "images/30.jpg", // Imagen para el punto del mapa
+        image: "images/10.jpg", // Imagen para el punto del mapa
         content: {
           title: 'La leyenda del "One Process"',
           text: 'En un vasto océano de conocimiento, existe una leyenda sobre un tesoro llamado "One Process ", un poder que otorga a su poseedor el control absoluto sobre los procesos químicos e industriales. Se dice que aquel que logre dominar las variables de proceso podrá navegar por los mares de la ingeniería sin miedo a naufragar.\nTú, joven aprendiz, eres navegante en esta travesía. Para encontrar el One Process, deberás viajar a través de cinco islas legendarias, cada una custodiada por un guardián que pondrá a prueba tu ingenio y habilidades. ¿Serás capaz de superar los desafíos y convertirte en el Gran Monarca de los Procesos?',
@@ -320,6 +303,7 @@ const modulesData = {
           { id: "que-es", label: "Prueba del capitán Venturi", icon: "fas fa-question-circle", type: "content" },
           { id: "Iflujo", label: "Isla del gran flujo", icon: "fas fa-tint", type: "content" },
           { id: "Vflujo", label: "Flujo", icon: "fas fa-tint", type: "content" },
+          { id: "Tflujo", label: "Tipos de flujo", icon: "fas fa-tint", type: "content" },
           { id: "test", label: "Desafío", icon: "fas fa-lightbulb", type: "test" },
         ],
       },
@@ -831,12 +815,27 @@ function showTopicContent(topicData) {
   // Cargar el contenido del tema
   loadTopicContent(topicData)
 
-  // Manejar sidebar según el dispositivo
-  if (window.innerWidth <= 768) {
-    closeSidebarOnMobile()
-  } else {
-    hideSidebarInTopicView()
+  
+  // Centrar el tema seleccionado en móvil
+  if (window.innerWidth <= 480) {
+    setTimeout(() => {
+      const topicsList = document.querySelector('.topic-points-list');
+      const activeItem = topicsList?.querySelector('.topic-point-item.active');
+      
+      if (topicsList && activeItem) {
+        // Calcula posición para centrar
+        const listRect = topicsList.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        const scrollPos = itemRect.left - listRect.left - (listRect.width / 2) + (itemRect.width / 2);
+        
+        topicsList.scrollTo({
+          left: scrollPos,
+          behavior: 'smooth'
+        });
+      }
+    }, 300); // Aumenté el timeout para asegurar el renderizado
   }
+  hideSidebarInTopicView();
 }
 
 function generateTopicPointsList() {
@@ -886,6 +885,24 @@ function loadTopicContent(topicData) {
   updateInfoButtonsState("que-es")
   // Reiniciar el botón de voz al cargar un nuevo tema
   resetSpeechButton()
+
+  // Resetear scroll de ambos sidebars en móvil
+  if (window.innerWidth <= 480) {
+    // Timeout para esperar el renderizado
+    setTimeout(() => {
+      const resetScroll = (selector) => {
+        const element = document.querySelector(selector);
+        if (element) {
+          element.scrollTo({
+            left: 0,
+            behavior: 'auto'
+          });
+        }
+      };
+      
+      resetScroll('.info-buttons');      // Scroll subtemas
+    }, 50);
+  }
 }
 
 function generateTopicInfoSidebar() {
@@ -1063,72 +1080,116 @@ function generateTestHTML(questions) {
 }
 
 function setupTestLogic(modal, questions) {
-  let currentQuestion = 0
-  const answers = {}
+  let currentQuestion = 0;
+  const answers = {};
 
-  const prevBtn = modal.querySelector(".test-prev")
-  const nextBtn = modal.querySelector(".test-next")
-  const submitBtn = modal.querySelector(".test-submit")
-  const progressFill = modal.querySelector(".progress-fill")
-  const progressText = modal.querySelector(".progress-text")
+  const prevBtn = modal.querySelector(".test-prev");
+  const nextBtn = modal.querySelector(".test-next");
+  const submitBtn = modal.querySelector(".test-submit");
+  const progressFill = modal.querySelector(".progress-fill");
+  const progressText = modal.querySelector(".progress-text");
 
   function updateProgress() {
-    const progress = ((currentQuestion + 1) / questions.length) * 100
-    progressFill.style.width = progress + "%"
-    progressText.textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`
+    const progress = ((currentQuestion + 1) / questions.length) * 100;
+    progressFill.style.width = progress + "%";
+    progressText.textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
   }
 
   function showQuestion(index) {
-    const questionElements = modal.querySelectorAll(".test-question")
+    const questionElements = modal.querySelectorAll(".test-question");
     questionElements.forEach((el, i) => {
-      el.classList.toggle("active", i === index)
-    })
+      el.classList.toggle("active", i === index);
+    });
 
-    // Controlar visibilidad de botones manteniendo posición
-    prevBtn.disabled = index === 0
-    prevBtn.style.opacity = index === 0 ? "0.5" : "1"
+    // Controlar visibilidad de botones
+    prevBtn.disabled = index === 0;
+    prevBtn.style.opacity = index === 0 ? "0.5" : "1";
 
     if (index === questions.length - 1) {
-      nextBtn.style.display = "none"
-      submitBtn.style.display = "flex"
+      nextBtn.style.display = "none";
+      submitBtn.style.display = "flex";
+      // Deshabilitar submit si no hay respuesta
+      const selectedOption = modal.querySelector(`input[name="question_${currentQuestion}"]:checked`);
+      submitBtn.disabled = !selectedOption;
+      submitBtn.style.opacity = !selectedOption ? "0.5" : "1";
     } else {
-      nextBtn.style.display = "flex"
-      submitBtn.style.display = "none"
+      nextBtn.style.display = "flex";
+      submitBtn.style.display = "none";
+      // Deshabilitar next si no hay respuesta
+      const selectedOption = modal.querySelector(`input[name="question_${currentQuestion}"]:checked`);
+      nextBtn.disabled = !selectedOption;
+      nextBtn.style.opacity = !selectedOption ? "0.5" : "1";
     }
 
-    updateProgress()
+    updateProgress();
   }
 
+  // Event listener para cambios en las opciones de respuesta
+  const optionInputs = modal.querySelectorAll('input[type="radio"]');
+  optionInputs.forEach(input => {
+    input.addEventListener("change", () => {
+      // Habilitar el botón correspondiente cuando se selecciona una respuesta
+      if (currentQuestion === questions.length - 1) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+      } else {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = "1";
+      }
+    });
+  });
+
   nextBtn.addEventListener("click", () => {
-    const selectedOption = modal.querySelector(`input[name="question_${currentQuestion}"]:checked`)
-    if (selectedOption) {
-      answers[currentQuestion] = Number.parseInt(selectedOption.value)
+    const selectedOption = modal.querySelector(`input[name="question_${currentQuestion}"]:checked`);
+    if (!selectedOption) {
+      showNotification("Por favor selecciona una respuesta antes de continuar", "error");
+      return;
     }
 
+    answers[currentQuestion] = Number.parseInt(selectedOption.value);
+    
     if (currentQuestion < questions.length - 1) {
-      currentQuestion++
-      showQuestion(currentQuestion)
+      currentQuestion++;
+      showQuestion(currentQuestion);
     }
-  })
+  });
 
   prevBtn.addEventListener("click", () => {
     if (currentQuestion > 0) {
-      currentQuestion--
-      showQuestion(currentQuestion)
+      currentQuestion--;
+      showQuestion(currentQuestion);
     }
-  })
+  });
 
   submitBtn.addEventListener("click", () => {
-    const selectedOption = modal.querySelector(`input[name="question_${currentQuestion}"]:checked`)
-    if (selectedOption) {
-      answers[currentQuestion] = Number.parseInt(selectedOption.value)
+    const selectedOption = modal.querySelector(`input[name="question_${currentQuestion}"]:checked`);
+    if (!selectedOption) {
+      showNotification("Por favor responde esta pregunta antes de finalizar el test", "error");
+      return;
     }
 
-    const results = calculateTestResults(questions, answers)
-    showTestResults(modal, results)
-  })
+    // Guardar la última respuesta
+    answers[currentQuestion] = Number.parseInt(selectedOption.value);
 
-  showQuestion(0)
+    // Verificar si todas las preguntas fueron respondidas
+    const unansweredQuestions = questions.map((_, index) => index)
+      .filter(index => answers[index] === undefined);
+
+    if (unansweredQuestions.length > 0) {
+      showNotification(`Tienes ${unansweredQuestions.length} pregunta(s) sin responder. Por favor respóndelas antes de finalizar.`, "error");
+      // Ir a la primera pregunta sin responder
+      currentQuestion = unansweredQuestions[0];
+      showQuestion(currentQuestion);
+      return;
+    }
+
+    // Todas respondidas - mostrar resultados
+    const results = calculateTestResults(questions, answers);
+    showTestResults(modal, results);
+  });
+
+  // Mostrar la primera pregunta
+  showQuestion(0);
 }
 
 function calculateTestResults(questions, answers) {
@@ -1663,7 +1724,7 @@ function getContentForButton(buttonId) {
       </button>
       </div>`,
       steps: [],
-      image: "images/45.png",
+      image: "images/45.PNG",
     },
 
     // ========== MÓDULO 1 - TEMA 2 (CONCEPTOS BÁSICOS) ==========
@@ -1748,6 +1809,45 @@ function getContentForButton(buttonId) {
       steps: [],
       video: "https://www.youtube.com/embed/FCvJp3uxb6U",
     },
+    "1-3-Tflujo": {
+      title: "Tipos de flujo",
+      text: `<b>Flujo volumétrico</b><br>
+      El flujo volumétrico se describe como el volumen de fluido que atraviesa una sección específica de una tubería o canal en un intervalo determinado de tiempo. Este parámetro se puede medir en cualquier punto a lo largo de una tubería, y el valor puede cambiar a medida que el líquido se mueve a través del sistema. 
+      <br>
+      Las unidades de medida comunes para el flujo volumétrico incluyen metros cúbicos por segundo (m³/s), litros por minuto (LPM) y galones por minuto (GPM).
+      <br>
+      El flujo volumétrico es igual al flujo másico dividido entre la densidad:
+      <br>
+      <b>Q<sub>v</sub> = ṁ / ρ</b>
+      <br>
+      <b>Donde:</b>
+      <br>• Q<sub>v</sub> = flujo volumétrico [m³/s]
+      <br>• ṁ = flujo másico [kg/s]
+      <br>• ρ = densidad [kg/m³]
+      <br><br>
+      <b>Flujo másico</b><br>
+      Se refiere a la masa del fluido transportada por unidad de tiempo, en otras palabras, es la medida de cuánta masa pasa por un punto específico en un determinado periodo.
+      <br>
+      Las unidades de medida comunes para el flujo másico incluyen kilogramos por segundo (kg/s), gramos por minuto (g/min).
+      <br>
+      Para obtener el flujo másico, se multiplica el flujo volumétrico por la densidad:
+      <br>
+      <b>ṁ = ρ · Q<sub>v</sub></b>
+      <br>
+      <b>Donde:</b>
+      <br>• ṁ = flujo másico [kg/s]
+      <br>• Q<sub>v</sub> = flujo volumétrico [m³/s]
+      <br>• ρ = densidad [kg/m³]
+      <br><br>
+      <b>Flujo molar</b><br>
+      El flujo molar indica la cantidad de moles de una sustancia que fluyen en un tiempo dado, en otras palabras, se refiere a la cantidad de sustancia medida en moles que pasa a través de una superficie específica por unidad de tiempo. Este concepto es fundamental en diversas áreas de la ingeniería y la química, especialmente en procesos donde se manejan reacciones químicas y transferencias de materia.
+      <br>
+      La unidad de medida más común para el flujo molar es el mol por segundo (mol/s).
+      <br>
+      La conversión entre flujo másico y flujo molar se realiza dividiendo el flujo másico por el peso molecular de la sustancia`,
+      steps: [],
+      image: "images/62.jpeg"
+    },
 
     // ========== MÓDULO 1 - TEMA 4 (PREPARACIÓN) ==========
     "1-4-que-es": {
@@ -1805,7 +1905,7 @@ function getContentForButton(buttonId) {
       </button>
       </div>`,
       steps: [],
-      image: "images/54.png",
+      image: "images/54.PNG",
     },
 
     // ========== MÓDULO 1 - TEMA 5 (IMPLEMENTACIÓN) ==========
@@ -2253,6 +2353,30 @@ window.addEventListener("click", (event) => {
     closeFormModal()
   }
 })
+
+// Controlador de orientación
+function checkOrientation() {
+  const warning = document.getElementById('orientation-warning');
+  const isMobile = window.innerWidth <= 768; // Incluye tablets
+  
+  if (isMobile) {
+    // Detectar orientación (métodos cruz-navegador)
+    const isLandscape = window.matchMedia("(orientation: landscape)").matches || Math.abs(window.orientation) === 90;
+    
+    if (isLandscape) {
+      warning.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    } else {
+      warning.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+}
+
+// Event listeners
+window.addEventListener('DOMContentLoaded', checkOrientation);
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
 
 // Detener la síntesis de voz si el usuario recarga o cierra la página
 window.addEventListener("beforeunload", () => {
