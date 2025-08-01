@@ -44,44 +44,58 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Estilo para el mensaje de advertencia por dispositivo */
-.device-warning {
-  display: none; /* oculto por defecto */
+/* Estilo para el mensaje de advertencia por orientacion dispositivo */
+.orientation-warning {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: linear-gradient(to bottom right, #1e3a8a, #0f766e);
-  color: var(--text-light);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
+  height: 100%;
+  background: linear-gradient(135deg, var(--deep-blue), var(--ocean-blue));
+  color: white;
+  z-index: 99999;
+  display: none;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 2rem;
+  padding: 20px;
 }
 
-.warning-box {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 3rem;
-  border-radius: 20px;
-  border: 3px dashed var(--coral);
-  box-shadow: 0 10px 30px var(--shadow-dark);
-  max-width: 500px;
+.orientation-warning.active {
+  display: flex;
 }
 
-.warning-box h2 {
+.warning-content i {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite;
+}
+
+.warning-content h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: var(--coral);
-  text-shadow: 1px 1px 3px black;
 }
 
-.warning-box p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--text-light);
+.warning-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 80%;
+  margin-left: 10%;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Mostrar solo en horizontal */
+@media screen and (orientation: portrait) {
+  .orientation-warning {
+    display: none !important;
+  }
 }
 
 /* Main Container */
@@ -3217,4 +3231,3 @@ body {
     z-index: 9999;
   }
 }
-
