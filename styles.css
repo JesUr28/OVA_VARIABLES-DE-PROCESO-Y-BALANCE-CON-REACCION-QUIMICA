@@ -590,31 +590,6 @@ body {
     url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Líneas de conexión entre puntos */
-.route-points-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  right: 15%;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--coral) 0%,
-    transparent 20%,
-    var(--coral) 25%,
-    transparent 45%,
-    var(--coral) 50%,
-    transparent 70%,
-    var(--coral) 75%,
-    transparent 95%,
-    var(--coral) 100%
-  );
-  border-radius: 2px;
-  z-index: 1;
-  animation: mapLine 3s ease-in-out infinite;
-}
-
 @keyframes mapLine {
   0%,
   100% {
