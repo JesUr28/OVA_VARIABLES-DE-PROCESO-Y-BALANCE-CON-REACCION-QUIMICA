@@ -12,145 +12,122 @@ let utterance = null
 let isSpeaking = false
 let listenBtn = null
 
+
+const topicsWithoutAudio = [
+    "1-3-conversion" // Lista de subtemas sin audio
+];
+
+// Función mejorada para controlar la visibilidad del botón de audio
+function toggleAudioButton(moduleId, topicId, subtopicId) {
+    const contentKey = `${moduleId}-${topicId}-${subtopicId}`;
+    const listenBtn = document.getElementById("listenBtn");
+    
+    if (!listenBtn) return;
+    
+    // Detener cualquier audio que esté reproduciéndose al cambiar de tema
+    if (topicsWithoutAudio.includes(contentKey)) {
+        stopSpeech();
+        listenBtn.style.display = "none";
+    } else {
+        listenBtn.style.display = "inline-block"; 
+    }
+}
+
 // Banco de preguntas personalizado para cada tema
 const customTestQuestions = {
   // Módulo 1
   "1-1": [
-    // Módulo 1, Tema 1
-    {
-      question: "¿Qué es una variable de proceso?",
-      options: [
-        "Un factor que se mantiene constante",
-        "Un parámetro que se controla durante un proceso",
-        "Una medida de tiempo",
-        "Un tipo de instrumento",
-      ],
-      correct: 1,
-    },
-    {
-      question: "¿Cuál es el objetivo principal del control de variables?",
-      options: [
-        "Aumentar los costos",
-        "Optimizar el desarrollo del proceso",
-        "Complicar el sistema",
-        "Reducir la eficiencia",
-      ],
-      correct: 1,
-    },
-    {
-      question: "¿Qué tipo de variables existen en un proceso?",
-      options: [
-        "Solo variables independientes",
-        "Variables dependientes e independientes",
-        "Solo variables dependientes",
-        "Variables aleatorias únicamente",
-      ],
-      correct: 1,
-    },
-    {
-      question: "¿Por qué es importante monitorear las variables?",
-      options: [
-        "Para mantener la calidad del proceso",
-        "Para aumentar el tiempo de producción",
-        "Para complicar el análisis",
-        "Para reducir la productividad",
-      ],
-      correct: 0,
-    },
-    {
-      question: "¿Qué herramientas se usan para medir variables?",
-      options: [
-        "Solo calculadoras",
-        "Instrumentos de medición especializados",
-        "Solo computadoras",
-        "Herramientas manuales básicas",
-      ],
-      correct: 1,
-    },
+    // // Módulo 1, Tema 1
+    // {
+    //   question: "¿Qué es una variable de proceso?",
+    //   options: [
+    //     "Un factor que se mantiene constante",
+    //     "Un parámetro que se controla durante un proceso",
+    //     "Una medida de tiempo",
+    //     "Un tipo de instrumento",
+    //   ],
+    //   correct: 1,
+    // },
   ],
-  "1-2": [
-    // Módulo 1, Tema 2
+    "1-2": [
+  ],
+
+  "1-3": [
+    // Módulo 1, Tema 3
     {
-      question:
-        "Responde las preguntas sobre conversión de unidades de temperatura. Se trata de ejercicios de conversión entre °C, °F y K, preguntas de verdadero o falso y selección múltiple.<br><br>1- Convierte 100°C a Fahrenheit usando la fórmula: <br><br>°F = (°C × 9⁄5) + 32",
+      question: "Responde las preguntas sobre conversión de unidades de temperatura. Se trata de ejercicios de conversión entre °C, °F y K, preguntas de verdadero o falso y selección múltiple.<br><br>1- Convierte 100°C a Fahrenheit usando la fórmula: <br><br>°F = (°C × 9⁄5) + 32",
       options: ["87,5 °F", "212 °F ", "148 °F", "210 °C"],
       correct: 1,
-      explanation:
-        "Las variables de proceso son parámetros que se monitorean y controlan durante un proceso industrial para garantizar su correcto funcionamiento.",
+      explanation: "Aplicando la formula:<br> (100 × 9/5) + 32 = 180 + 32 = 212 °F",
     },
     {
       question: "La temperatura de congelación del agua en Kelvin es 0 K.",
       options: ["Verdadero", "Falso"],
       correct: 1,
-      explanation:
-        "El control de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+      explanation: "El cero Kelvin (0 K) representa el cero absoluto, que es la temperatura más baja posible, donde las partículas tienen mínima energía térmica. La temperatura de congelación del agua es de 273,5 K, equivalente a 0 °C, no 0 K.",
     },
     {
       question: "100°F es mayor que 40°C",
       options: ["Verdadero", "Falso"],
       correct: 1,
-      explanation: "hola de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+      explanation: "Para comparar, convertimos 100 °F a °C con la fórmula:<br> °C = ((°F − 32) × 5) / 9 = ((100 − 32) × 5) / 9 = (68 × 5) / 9 ≈ 37,8 °C <br> Por lo tanto, 100 °F < 40 °C, lo que hace falsa la afirmación.",
     },
     {
       question: "¿Qué afirmación es correcta sobre la relación entre °C y K?",
       options: [
         "El valor en °C siempre es mayor que en K",
         "Ambas escalas tienen la misma magnitud numérica",
-        "El valor en K siempre es mayor que en °C por 273.15 unidades",
-        "Para convertir de °C a K se debe restar 273.15",
+        "El valor en K siempre es mayor que en °C por 273,15 unidades",
+        "Para convertir de °C a K se debe restar 273,15",
       ],
       correct: 2,
-      explanation: "hoyyy de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+      explanation: "La relación entre grados Celsius y Kelvin es:<br> K = °C + 273,15 <br> Esto significa que cada valor en °C es siempre 273,15 unidades menor que su equivalente en K, ya que el cero de la escala Kelvin comienza donde la energía térmica es mínima, mientras que en °C se basa en el punto de congelación del agua.",
     },
     {
       question:
         "¿Cuál de las siguientes afirmaciones sobre la conversión de diferencias de temperatura (∆T) entre °C y K es correcta?",
       options: [
         "Un cambio de 1 °C es igual a un cambio de 1 K",
-        "Un cambio de 1 °C equivale a un cambio de 273.15 K",
+        "Un cambio de 1 °C equivale a un cambio de 273,15 K",
         "Un cambio de 1 K equivale a un cambio de 0 °C",
-        "Para convertir ∆°C a ∆K se debe sumar 273.15",
+        "Para convertir ∆°C a ∆K se debe sumar 273,15",
       ],
       correct: 0,
       explanation:
-        "comoooo de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+        "Aunque los puntos de inicio de las escalas Celsius y Kelvin son distintos, la magnitud de cambio entre ambas es la misma. Es decir: <br> ΔT = 1 °C = 1 K <br> Esto solo aplica a diferencias de temperatura, no a valores absolutos. Por ejemplo, un aumento de 10 °C implica un aumento de 10 K.",
     },
   ],
-  "1-3": [
-    // Módulo 1, Tema 3
+  "1-4": [
+    // Módulo 1, Tema 4
     {
       question:
         "Seleccione las respuestas correctas:<br><br>Una corriente de oxígeno (O₂) entra a un reactor con flujo molar de 10 mol/min. ¿Cuál es su flujo másico en g/min?",
       options: ["320 g/min", "0,32 g/min", "3,2 g/min", "160 g/min"],
       correct: 0,
-      explanation:
-        "El control de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+      explanation: "Datos:<br>- ṅ = 10 mol/min <br> - Mₒ₂ = 32 g/mol<br>Cálculo:<br>ṁ = ṅ × M = 10 × 32 = 320 g/min",
     },
     {
-      question:
-        "Se suministra un flujo de nitrógeno (N₂) a razón de 22,4 L/min en condiciones estándar (0 °C y 1 atm). <br><br>¿Cuál es el flujo molar? <br><br>DATO: 1 mol de gas ocupa 22,4 L en condiciones estándar.",
+      question: "Se suministra un flujo de nitrógeno (N₂) a razón de 22,4 L/min en condiciones estándar (0 °C y 1 atm). <br><br>¿Cuál es el flujo molar? <br><br>DATO: 1 mol de gas ocupa 22,4 L en condiciones estándar.",
       options: ["0,5 mol/min", "2 mol/min", "1 mol/min", "10 mol/min"],
       correct: 2,
-      explanation:
-        "El control de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+      explanation: "En condiciones estándar (0 °C, 1 atm) 1 mol de gas ocupa 22.4 L.<br><br>ṅ = Volumen / Volumen por mol = (22.4 L/min) / (22.4 L/mol) = 1.0 mol/min",
     },
     {
       question: `Ordena de mayor a menor los siguientes flujos másicos:<br><br>
         A: 5 mol/min de CH₄ (PM = 16,0 g/mol)<br>
         B: 2 mol/min de CO₂ (PM = 44,0 g/mol)<br>
         C: 3 mol/min de O₂ (PM = 32,0 g/mol)`,
-      options: ["B > C > A", "C > B > A", "C > B > A", "A > B > C"],
+      options: ["B > C > A", "C > B > A", "B > A > C", "A > B > C"],
       correct: 1,
       explanation:
-        "El control de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+        "Calculamos flujo másico para cada caso:<br>A: 5 mol/min × 16 g/mol = 80 g/min<br>B: 2 mol/min × 44 g/mol = 88 g/min<br>C: 3 mol/min × 32 g/mol = 96 g/min<br><br>Orden de mayor a menor:<br>C (96) > B (88) > A (80)",
     },
     {
-      question:
-        "Un flujo de dióxido de carbono (CO₂) entra a una columna de absorción con un flujo másico de 88 g/min. <br><br>¿Cuál es el flujo molar? <br><br> Dato: Masa molar del CO₂ = 44.0 g/mol .",
+      question: "Dióxido de carbono (CO₂) entra a una columna de absorción a un flujo másico de 88 g/min. <br><br>¿Cuál es el flujo molar? <br><br> Dato: Masa molar del CO₂ = 44,0 g/mol .",
       options: ["4 mol/min", "2 mol/min", "1 mol/min", "0.5 mol/min"],
       correct: 1,
       explanation:
-        "El control de variables busca optimizar el proceso manteniendo los parámetros dentro de rangos óptimos.",
+        "Datos:<br>- ṁ = 88 g/min<br>- M_CO₂ = 44 g/mol<br><br>ṅ = ṁ / M = (88 g/min) / (44.0 g/mol) = 2.0 mol/min",
     },
   ],
   // Módulo 2
@@ -250,6 +227,22 @@ const modulesData = {
     topics: [
       {
         id: 1,
+        title: "Tu misión",
+        icon: "fas fa-anchor",
+        image: "images/15.jpg", // Imagen para el punto del mapa
+        content: {
+          title: 'La leyenda del "One Process"',
+          text: 'En un vasto océano de conocimiento, existe una leyenda sobre un tesoro llamado "One Process ", un poder que otorga a su poseedor el control absoluto sobre los procesos químicos e industriales. Se dice que aquel que logre dominar las variables de proceso podrá navegar por los mares de la ingeniería sin miedo a naufragar.\nTú, joven aprendiz, eres navegante en esta travesía. Para encontrar el One Process, deberás viajar a través de cinco islas legendarias, cada una custodiada por un guardián que pondrá a prueba tu ingenio y habilidades. ¿Serás capaz de superar los desafíos y convertirte en el Gran Monarca de los Procesos?',
+          steps: [],
+        },
+        sidebarButtons: [
+          { id: "que-es", label: "Introducción", icon: "fas fa-question-circle", type: "content" },
+          { id: "variablesP", label: "Las variables de proceso", icon: "fas fa-bullseye", type: "content" },
+          
+        ],
+      },
+      {
+        id: 2,
         title: "Isla de la presión",
         icon: "fas fa-anchor",
         image: "images/10.jpg", // Imagen para el punto del mapa
@@ -259,9 +252,7 @@ const modulesData = {
           steps: [],
         },
         sidebarButtons: [
-          { id: "que-es", label: "Introducción", icon: "fas fa-question-circle", type: "content" },
-          { id: "variablesP", label: "Las variables de proceso", icon: "fas fa-bullseye", type: "content" },
-          { id: "Ipresion", label: "Isla de la presión", icon: "fas fa-stopwatch", type: "content" },
+          { id: "que-es", label: "Isla de la presión", icon: "fas fa-stopwatch", type: "content" },
           { id: "Cpresion", label: "¿Qué es la presión?", icon: "fas fa-stopwatch", type: "content" },
           { id: "Tpresion", label: "Tipos de presión", icon: "fas fa-stopwatch", type: "content" },
           { id: "medicion", label: "Instrumentos de medición", icon: "fas fa-stopwatch", type: "content" },
@@ -270,7 +261,7 @@ const modulesData = {
         ],
       },
       {
-        id: 2,
+        id: 3,
         title: "Isla del fuego eterno",
         icon: "fas fa-book-open",
         image: "images/2.jpg",
@@ -289,7 +280,7 @@ const modulesData = {
         ],
       },
       {
-        id: 3,
+        id: 4,
         title: "Isla del gran flujo",
         icon: "fas fa-tools",
         image: "images/3.jpg",
@@ -308,7 +299,7 @@ const modulesData = {
         ],
       },
       {
-        id: 4,
+        id: 5,
         title: "Isla de la concentración",
         icon: "fas fa-ship",
         image: "images/5.jpg",
@@ -326,7 +317,7 @@ const modulesData = {
         ],
       },
       {
-        id: 5,
+        id: 6,
         title: "Isla del Gran Saber",
         icon: "fas fa-compass",
         image: "images/8.jpg",
@@ -750,11 +741,11 @@ function generateRoutePoints(topics) {
   // Posiciones alternadas para crear efecto de mapa
   const positions = [
     { x: 15, y: 25 },
-    { x: 30, y: 65 },
+    { x: 30, y: 75 },
     { x: 45, y: 25 },
-    { x: 60, y: 65 },
+    { x: 60, y: 75 },
     { x: 75, y: 25 },
-    { x: 87, y: 65 }, // Tema 6 - abajo
+    { x: 87, y: 75 }, // Tema 6 - abajo
     { x: 97, y: 25 },
   ]
 
@@ -1631,6 +1622,7 @@ function updateTopicMainContent(buttonId) {
 
   addTopicContentStyles()
   resetSpeechButton() // Reiniciar el botón de voz al cambiar de subtema
+  toggleAudioButton(currentModule, currentTopicData.id, buttonId);
 }
 
 // Función mejorada para contenido específico por tema y subtema
@@ -1651,7 +1643,7 @@ function getContentForButton(buttonId) {
 
   // Contenido específico para cada combinación de tema y subtema
   const specificContent = {
-    // ========== MÓDULO 1 - TEMA 1 (GENERALIDADES) ==========
+    // ========== MÓDULO 1 - TEMA 1 (tu mision) ==========
     "1-1-que-es": {
       title: 'Leyenda del "One Process"',
       text: 'En un vasto océano de conocimiento, existe una leyenda sobre un tesoro llamado "One Process ", un poder que otorga a su poseedor el control absoluto sobre los procesos químicos e industriales. Se dice que aquel que logre dominar las variables de proceso podrá navegar por los mares de la ingeniería sin miedo a naufragar.\nTú, joven aprendiz, eres navegante en esta travesía. Para encontrar el One Process, deberás viajar a través de cinco islas legendarias, cada una custodiada por un guardián que pondrá a prueba tu ingenio y habilidades. ¿Serás capaz de superar los desafíos y convertirte en el Gran Monarca de los Procesos?',
@@ -1662,21 +1654,23 @@ function getContentForButton(buttonId) {
       title: "Las variables de proceso",
       text: "Las variables de proceso son esenciales en la ingeniería, ya que permiten describir y controlar el comportamiento de las sustancias dentro de un sistema. Un proceso implica la transformación de materias primas a través de diversas unidades operativas. Las variables de proceso juegan un papel clave para garantizar la eficacia, seguridad y eficiencia del proceso, y la calidad de los productos y servicios ofrecidos. Su correcta medición y control son fundamentales para mantener la estabilidad y mejorar el desempeño de los procesos.",
       steps: [],
-      video: "https://www.youtube.com/embed/XOXXXG9LYpY",
+      video: "https://www.youtube.com/embed/BwYsm7RFeXg",
     },
-    "1-1-Ipresion": {
+
+    // ========== MÓDULO 1 - TEMA 2 (CONCEPTOS BÁSICOS)
+    "1-2-que-es": {
       title: "El Reino de Baro'Que",
       text: 'Aquí, el pirata Baro\'Que, conocido como "El Señor de la Presión", controla los mares con su habilidad de manipular la presión del aire y el agua. Para pasar su prueba, debes comprender la diferencia entre presión absoluta y manométrica, así como dominar las herramientas de medición de presión.',
       steps: [],
       image: "images/41.jpeg",
     },
-    "1-1-Cpresion": {
+    "1-2-Cpresion": {
       title: "¿Cómo se define la presión?",
       text: "La presión se define como la fuerza ejercida por unidad de área (F/A). En el contexto de los fluidos, se utiliza el término presión cuando esta fuerza es ejercida por un gas o un líquido sobre una superficie. Por lo tanto, se expresa en unidades de newtons por metro cuadrado (N/m²), la cual se llama pascal (Pa).",
       steps: [],
       video: "https://www.youtube.com/embed/tqnd4avxIyc",
     },
-    "1-1-Tpresion": {
+    "1-2-Tpresion": {
       title: "Tipos de presión",
       text: `<b>Presión absoluta:</b> es la presión medida en relación con el vacío absoluto, el cual representa la ausencia total de presión (cero presión).
       <br><b>Presión atmosférica:</b> es la presión que ejerce el aire de la atmósfera sobre la superficie terrestre y sobre todos los objetos situados en ella. Su valor varía con la altitud y las condiciones climáticas.
@@ -1685,7 +1679,7 @@ function getContentForButton(buttonId) {
       steps: [],
       image: "images/42.jpeg",
     },
-    "1-1-medicion": {
+    "1-2-medicion": {
       title: "Instrumentos de medición",
       text: `<b style="padding-left: 20px; display: inline-block;">Métodos de elemento elástico</b>
       <ul style="list-style: disc; padding-left: 20px;">
@@ -1707,7 +1701,7 @@ function getContentForButton(buttonId) {
       steps: [],
       image: "images/44.jpeg",
     },
-    "1-1-desafio": {
+    "1-2-desafio": {
       title: "El Reino de Baro'Que",
       text: `<b>Desafío:</b> Utilizando el <b>simulador PhET</b>, selecciona dos líquidos con diferentes densidades 
       (por ejemplo, agua y miel). Usa la regla (haciendo clic en su ítem) para medir la altura del líquido en el recipiente 
@@ -1715,7 +1709,7 @@ function getContentForButton(buttonId) {
       control de flujo superior hacia la derecha para agregar más contenido, o utilizando la perilla inferior para retirar la cantidad necesaria.
       <br><br>1 - Llena el recipiente con cada líquido hasta la altura máxima y mide la presión a 1 m de profundidad. 
       <br>2 - Compara los resultados obtenidos con ambos líquidos.      
-      <br><br><b>¿Cuál de los líquidos ejerce mayor presión según la altura asignada? </b>      
+      <br><br><b>¿Cuál de los líquidos ejerce mayor presión según la altura asignada? Justifica tu respuesta.</b>
       <br><br><b>Enlace al simulador: </b> <a href="https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html?locale=es" target="_blank" style="color: #1222b6ff;">¡¡ Haz clic aquí !!</a>
       <br><br>
       <div class="encuesta-container">
@@ -1728,13 +1722,13 @@ function getContentForButton(buttonId) {
     },
 
     // ========== MÓDULO 1 - TEMA 2 (CONCEPTOS BÁSICOS) ==========
-    "1-2-que-es": {
+    "1-3-que-es": {
       title: "El Desafío de Calor'Bel",
-      text: "En esta isla volcánica, la pirata Calor'Bel puede cambiar la temperatura a su antojo. Solo aquellos que dominen las escalas de temperatura podrán cruzar sin ser consumidos por las llamas.",
+      text: "En esta isla volcánica, el pirata Calor'Bel puede cambiar la temperatura a su antojo. Solo aquellos que dominen las escalas de temperatura podrán cruzar sin ser consumidos por las llamas.",
       steps: [],
       image: "images/46.jpeg",
     },
-    "1-2-islaC": {
+    "1-3-islaC": {
       title: "Isla del fuego eterno",
       text: `La temperatura es una variable que afecta las propiedades físicas y químicas de las sustancias. 
       Su control es esencial, ya que influye en las propiedades fisicoquímicas, en el estado de agregación 
@@ -1744,7 +1738,7 @@ function getContentForButton(buttonId) {
       steps: [],
       image: "images/47.jpeg",
     },
-    "1-2-conversion": {
+    "1-3-conversion": {
       title: "Tabla de conversión de temperaturas",
       text: `
       <table style="border-collapse: collapse; width: 100%; text-align: center; font-family: 'Comic Sans MS', cursive; border: 2px solid #a76de0;">
@@ -1783,33 +1777,33 @@ function getContentForButton(buttonId) {
       </table>`,
       steps: [],
     },
-    "1-2-Vtemperatura": {
+    "1-3-Vtemperatura": {
       title: "Video explicativo de la temperatura",
       text: "",
       steps: [],
       video: "https://www.youtube.com/embed/U8go9nhP-3E",
     },
 
-    // ========== MÓDULO 1 - TEMA 3 (HERRAMIENTAS) ==========
-    "1-3-que-es": {
+    // ========== MÓDULO 1 - TEMA 4 (HERRAMIENTAS) ==========
+    "1-4-que-es": {
       title: "La prueba del capitán Venturi",
       text: "El Capitán Venturi, un legendario navegante, controla los ríos subterráneos de esta isla con su dominio del flujo volumétrico, másico y molar. Para seguir adelante, debes demostrar tu capacidad para calcular, diferenciar y relacionar estos tipos de flujo en un sistema de tuberías.",
       steps: [],
       image: "images/49.jpeg",
     },
-    "1-3-Iflujo": {
+    "1-4-Iflujo": {
       title: "Isla del gran flujo",
       text: "El flujo se refiere al movimiento de material (generalmente, un fluido) dentro de un proceso y puede ser másico, molar o volumétrico. Es esencial para calcular la cantidad de producción en un proceso. Las velocidades de flujo son variables críticas, e influyen en la caída de presión y determinan parámetros de diseño, en sistemas de transporte en tuberías y ductos.",
       steps: [],
       image: "images/50.jpeg",
     },
-    "1-3-Vflujo": {
+    "1-4-Vflujo": {
       title: "Video explicativo del flujo",
       text: "",
       steps: [],
       video: "https://www.youtube.com/embed/FCvJp3uxb6U",
     },
-    "1-3-Tflujo": {
+    "1-4-Tflujo": {
       title: "Tipos de flujo",
       text: `<b>Flujo volumétrico</b><br>
       El flujo volumétrico se describe como el volumen de fluido que atraviesa una sección específica de una tubería o canal en un intervalo determinado de tiempo. Este parámetro se puede medir en cualquier punto a lo largo de una tubería, y el valor puede cambiar a medida que el líquido se mueve a través del sistema. 
@@ -1840,25 +1834,31 @@ function getContentForButton(buttonId) {
       <br>• ρ = densidad [kg/m³]
       <br><br>
       <b>Flujo molar</b><br>
-      El flujo molar indica la cantidad de moles de una sustancia que fluyen en un tiempo dado, en otras palabras, se refiere a la cantidad de sustancia medida en moles que pasa a través de una superficie específica por unidad de tiempo. Este concepto es fundamental en diversas áreas de la ingeniería y la química, especialmente en procesos donde se manejan reacciones químicas y transferencias de materia.
-      <br>
-      La unidad de medida más común para el flujo molar es el mol por segundo (mol/s).
-      <br>
-      La conversión entre flujo másico y flujo molar se realiza dividiendo el flujo másico por el peso molecular de la sustancia`,
+      El flujo molar indica la cantidad de moles de una sustancia que fluyen en un tiempo dado; en otras palabras, 
+      se refiere a la cantidad de sustancia, medida en moles, que pasa a través de una superficie específica por unidad de tiempo. 
+      Este concepto es fundamental en diversas áreas de la ingeniería y la química, especialmente en procesos donde se manejan reacciones químicas 
+      y transferencias de materia.<br>
+      La unidad de medida más común para el flujo molar es el mol por segundo (mol/s).<br>
+      La conversión entre flujo másico y flujo molar se realiza dividiendo el flujo másico por el peso molecular de la sustancia:<br>
+      <b>ṅ = ṁ / M</b><br>
+      <b>Donde:</b><br>
+      • ṅ = flujo molar [mol/s]<br>
+      • ṁ = flujo másico [kg/s]<br>
+      • M = masa molar o peso molecular de la sustancia [kg/mol]<br><br>`,
       steps: [],
       image: "images/62.jpeg"
     },
 
-    // ========== MÓDULO 1 - TEMA 4 (PREPARACIÓN) ==========
-    "1-4-que-es": {
+    // ========== MÓDULO 1 - TEMA 5 (PREPARACIÓN) ==========
+    "1-5-que-es": {
       title: "El Reto de Alquimix",
       text: `El alquimista Alquimix protege la receta del elixir más puro del mundo, 
       pero solo aquellos que dominen la concentración y la composición de las soluciones podrán obtenerla. 
-      Aquí aprenderás sobre unidades como Normalidad (N), Molaridad (M), ppm, ppb, %p/p, %p/V, %mol/mol.`,
+      Aquí aprenderás sobre unidades como Normalidad (N), Molaridad (M), ppm, ppb, %p/p, %p/V, %mol/mol, equivalente - gramo.`,
       steps: [],
       image: "images/51.jpeg",
     },
-    "1-4-concentracion": {
+    "1-5-concentracion": {
       title: "Isla de la concentración",
       text: `La concentración química se refiere a la medida de la cantidad de soluto presente en una solución, disolución o mezcla. La concentración cuantifica la proporción de soluto respecto a la solución total (soluto+disolvente). Algunas unidades específicas también expresan esta proporción en relación directa con la cantidad de disolvente. <br>
       <b>Soluto: </b> La sustancia que se disuelve en el disolvente.
@@ -1867,14 +1867,12 @@ function getContentForButton(buttonId) {
       steps: [],
       image: "images/52.jpeg",
     },
-    "1-4-expresar": {
+    "1-5-expresar": {
       title: "¿Cómo se expresa la concentración?",
       text: `La concentración se expresa de diferentes maneras, siendo las más comunes:
-      <br><b> Molaridad (M): </b> Moles de soluto por litro de solución. 
-      <br><b> Fracción másica (p/p): </b> Masa de soluto por 100 gramos de solución. 
-      <br><b> Fracción molar (mol/mol): </b> Moles de soluto por el total de moles en la solución. 
       <br><b> Normalidad (N): </b> Equivalentes-gramo de soluto por litro de solución.
       <br><b> Molaridad (M): </b> Moles de soluto por litro de solución.
+      <br><b> Equivalente - gramo: </b> Masa molar entre su n-factor (mol de H⁺, OH⁻ o electrones) depende del tipo de reacción..
       <br><b> Partes por millón (ppm): </b> Miligramos de soluto por litro de solución (mg/L) o por kilogramo, dependiendo del sistema.
       <br><b> Partes por billón (ppb): </b> Microgramos de soluto por litro (µg/L) o por kilogramo.
       <br><b> Porcentaje masa a masa (%p/p): </b> Gramos de soluto por 100 gramos de solución.
@@ -1884,19 +1882,19 @@ function getContentForButton(buttonId) {
       steps: [],
       image: "images/53.jpeg",
     },
-    "1-4-VideoC": {
+    "1-5-VideoC": {
       title: "Video explicativo de la concentración",
       text: "",
       steps: [],
       video: "https://www.youtube.com/embed/thWBtOutRgo",
     },
-    "1-4-desafioA": {
+    "1-5-desafioA": {
       title: "El Reto de Alquimix",
-      text: `<b>Desafío:</b> En el <b>simulador PhET</b>, simula una solución con 1 L de agua, agrega 0,5 moles de soluto y calcula la molaridad (M). 
-      <br><br>Luego, observa qué sucede con la molaridad si agregas más soluto sin cambiar el volumen.
-      <br><br>Ahora analiza cuánto sería la molaridad si agregas 1 mol en solo 0,25 L.
-      <br><br>Finalmente, compara dos soluciones utilizando como solutos nitrato de cobalto y sulfato de cobre, agregando la misma cantidad de moles y volumen en cada caso. 
-      <br><br>Observa las diferencias en la concentración que se generan y reflexiona sobre cómo influye el tipo de soluto en la representación visual del simulador.
+      text: `<b>Desafío:</b> En el <b>simulador  de PhET</b>, prepara una solución con 1 L de agua y agrega alguno de los solutos que se despliegan de forma sólida, observa como 
+      varía la concentración punzando sobre la manecilla de medición y arrastrándola a la parte líquida que se encuentra en el recipiente; agrega más soluto sin cambiar el volumen, 
+      luego disminuye y aumenta el nivel del agua. Puedes controlar el nivel del agua en el recipiente arrastrando la perilla de control de flujo superior hacia la derecha para agregar 
+      más contenido, o utilizando la perilla inferior para retirar la cantidad que desees. En el experimento con el simulador de PhET, realizaste diferentes operaciones sobre una solución: agregar más soluto, agregar más solvente y eliminar parte de la solución.
+      <br><br><b>¿Cuáles de estas operaciones cambian la concentración de la solución y cuáles no? Explica por qué ocurre o no ocurre el cambio en cada caso.</b>
       <br><br><b>Enlace al simulador: </b> <a href="https://phet.colorado.edu/es/simulations/concentration" target="_blank" style="color: #1222b6ff;">¡¡ Haz clic aquí !!</a>
       <br><br>
       <div class="encuesta-container">
@@ -1908,21 +1906,21 @@ function getContentForButton(buttonId) {
       image: "images/54.PNG",
     },
 
-    // ========== MÓDULO 1 - TEMA 5 (IMPLEMENTACIÓN) ==========
-    "1-5-que-es": {
+    // ========== MÓDULO 1 - TEMA 6 (IMPLEMENTACIÓN) ==========
+    "1-6-que-es": {
       title: "El último desafío",
       text: `Después de superar todas las islas, llegas a la Isla del Gran Saber, donde una antigua y gran maestra del conocimiento te hará una última prueba: integrar todas las variables de proceso en un gran caso de estudio. Solo entonces, recibirás el título de Gran Monarca de los Procesos y descubrirás el secreto del One Process.
       <br><br><b>Desafío final:</b> Analiza un proceso real donde debas aplicar todos los conocimientos adquiridos.`,
       steps: [],
       image: "images/55.jpeg",
     },
-    "1-5-proceso": {
+    "1-6-proceso": {
       title: "Aplicación en un caso real",
-      text: `<p>Una planta química produce etanol (EtOH) a partir de una mezcla líquida de etanol y agua, proveniente de una unidad de fermentación. Esta mezcla alimenta una torre de destilación para purificar el etanol.</p>
+      text: `<p>Una planta química produce etanol (EtOH) a partir de una mezcla líquida de etanol y agua, proveniente de una unidad de fermentación. Esta mezcla alimenta una torre de destilación (rectificadora) para obtener etanol con alta pureza.</p>
       <ul>
         <li><strong>Temperatura de operación:</strong> 80 °C</li>
         <li><strong>Presión de operación:</strong> 1,5 atm</li>
-        <li><strong>Flujo volumétrico de alimentación gaseosa (EtOH puro):</strong> 500 L/h</li>
+        <li><strong>Flujo volumétrico de la solución en la alimentación:</strong> 500 L/h</li>
       </ul>
       <p><br><strong>Datos físicos:</strong></p>
       <ul>
@@ -1931,9 +1929,9 @@ function getContentForButton(buttonId) {
         <li><strong>Constante de gas:</strong> R = 0,08205 L·atm/mol·K</li>
       </ul>`,
       steps: [],
-      image: "images/56.jpeg",
+      image: "images/56.PNG",
     },
-    "1-5-desafioG": {
+    "1-6-desafioG": {
       title: "Realiza estos enunciados",
       text: `
       1-	Convertir el flujo volumétrico de etanol a flujo molar (mol/h) usando la ley de los gases ideales.<br><br>
@@ -2311,9 +2309,11 @@ function setupAmbientMusicButton() {
 
   if (!ambientBtn || !music) return
 
+  // Detectar si es un dispositivo móvil
+  const isPhone = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   ambientBtn.addEventListener("click", () => {
     if (!isPlaying) {
-      music.volume = 0.05
+      music.volume = isPhone ? 0.02 : 0.05; // Volumen más bajo en móviles
       music.play()
       ambientBtn.textContent = "🔇 Detener Ambiente"
       isPlaying = true
