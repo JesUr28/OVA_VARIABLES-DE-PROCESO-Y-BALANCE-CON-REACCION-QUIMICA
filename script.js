@@ -1946,7 +1946,7 @@ function getContentForButton(buttonId) {
     "2-3-que-es": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/5.PNG" alt="Velocidad de reacción" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/5.png" alt="Velocidad de reacción" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
         <i>Figura: Explicación de Velocidad de reacción.</i>
       </p>
@@ -1959,7 +1959,7 @@ function getContentForButton(buttonId) {
     "2-4-que-es": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/6.PNG" alt="Conversión" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/6.png" alt="Conversión" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
         <i>Figura: Explicación de Conversión.</i>
       </p>
@@ -1972,7 +1972,7 @@ function getContentForButton(buttonId) {
     "2-5-que-es": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/7.PNG" alt="Reactivo límite y en exceso" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/7.png" alt="Reactivo límite y en exceso" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
         <i>Figura: Explicación de reactivo límite y en exceso.</i>
       </p>
@@ -1984,7 +1984,7 @@ function getContentForButton(buttonId) {
     "2-6-que-es": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/8.PNG" alt="Selectividad y Rendimiento Fraccional" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/8.png" alt="Selectividad y Rendimiento Fraccional" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
         <i>Figura: Explicación de Selectividad y Rendimiento Fraccional.</i>
       </p>
@@ -1996,7 +1996,7 @@ function getContentForButton(buttonId) {
     "2-7-que-es": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/9.PNG" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/9.png" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
         <i>Figura: Explicación de Balance Elemental.</i>
       </p>
@@ -2010,11 +2010,11 @@ function getContentForButton(buttonId) {
       <img src="images2/20.PNG" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       </div>
       <div style="text-align: center; max-width: 600px; margin: auto; margin-top: 20px; border: 2px solid #333; border-radius: 10px; padding: 0px; background-color: #fff;">
-        <img src="images2/21.PNG" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block; margin-bottom: 10px;">
-        <img src="images2/22.PNG" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block;">
+        <img src="images2/21.png" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block; margin-bottom: 10px;">
+        <img src="images2/22.png" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block;">
       </div>
       <div style="text-align: center; max-width: 600px; margin: auto; margin-top: 20px;">
-        <img src="images2/23.PNG" alt="Grados de Libertad" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+        <img src="images2/23.png" alt="Grados de Libertad" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       </div>
       <br>
       <div class="encuesta-container">
