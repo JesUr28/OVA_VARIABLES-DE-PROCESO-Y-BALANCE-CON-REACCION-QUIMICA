@@ -14,7 +14,14 @@ let listenBtn = null
 
 
 const topicsWithoutAudio = [
-    "1-3-conversion" // Lista de subtemas sin audio
+    "1-3-conversion", // Lista de subtemas sin audio
+    "2-2-que-es",
+    "2-3-que-es",
+    "2-4-que-es",
+    "2-5-que-es",
+    "2-6-que-es",
+    "2-7-que-es",
+    "2-7-evaluacion"
 ];
 
 // Función mejorada para controlar la visibilidad del botón de audio
@@ -110,7 +117,7 @@ const customTestQuestions = {
       question: "Se suministra un flujo de nitrógeno (N₂) a razón de 22,4 L/min en condiciones estándar (0 °C y 1 atm). <br><br>¿Cuál es el flujo molar? <br><br>DATO: 1 mol de gas ocupa 22,4 L en condiciones estándar.",
       options: ["0,5 mol/min", "2 mol/min", "1 mol/min", "10 mol/min"],
       correct: 2,
-      explanation: "En condiciones estándar (0 °C, 1 atm) 1 mol de gas ocupa 22.4 L.<br><br>ṅ = Volumen / Volumen por mol = (22.4 L/min) / (22.4 L/mol) = 1.0 mol/min",
+      explanation: "En condiciones estándar (0 °C, 1 atm) 1 mol de gas ocupa 22,4 L.<br><br>ṅ = Volumen / Volumen por mol = (22,4 L/min) / (22,4 L/mol) = 1,0 mol/min",
     },
     {
       question: `Ordena de mayor a menor los siguientes flujos másicos:<br><br>
@@ -124,10 +131,10 @@ const customTestQuestions = {
     },
     {
       question: "Dióxido de carbono (CO₂) entra a una columna de absorción a un flujo másico de 88 g/min. <br><br>¿Cuál es el flujo molar? <br><br> Dato: Masa molar del CO₂ = 44,0 g/mol .",
-      options: ["4 mol/min", "2 mol/min", "1 mol/min", "0.5 mol/min"],
+      options: ["4 mol/min", "2 mol/min", "1 mol/min", "0,5 mol/min"],
       correct: 1,
       explanation:
-        "Datos:<br>- ṁ = 88 g/min<br>- M_CO₂ = 44 g/mol<br><br>ṅ = ṁ / M = (88 g/min) / (44.0 g/mol) = 2.0 mol/min",
+        "Datos:<br>- ṁ = 88 g/min<br>- M_CO₂ = 44 g/mol<br><br>ṅ = ṁ / M = (88 g/min) / (44,0 g/mol) = 2,0 mol/min",
     },
   ],
   // Módulo 2
@@ -231,8 +238,8 @@ const modulesData = {
         icon: "fas fa-anchor",
         image: "images/15.jpg", // Imagen para el punto del mapa
         content: {
-          title: 'La leyenda del "One Process"',
-          text: 'En un vasto océano de conocimiento, existe una leyenda sobre un tesoro llamado "One Process ", un poder que otorga a su poseedor el control absoluto sobre los procesos químicos e industriales. Se dice que aquel que logre dominar las variables de proceso podrá navegar por los mares de la ingeniería sin miedo a naufragar.\nTú, joven aprendiz, eres navegante en esta travesía. Para encontrar el One Process, deberás viajar a través de cinco islas legendarias, cada una custodiada por un guardián que pondrá a prueba tu ingenio y habilidades. ¿Serás capaz de superar los desafíos y convertirte en el Gran Monarca de los Procesos?',
+          title: '',
+          text: '',
           steps: [],
         },
         sidebarButtons: [
@@ -247,8 +254,8 @@ const modulesData = {
         icon: "fas fa-anchor",
         image: "images/10.jpg", // Imagen para el punto del mapa
         content: {
-          title: 'La leyenda del "One Process"',
-          text: 'En un vasto océano de conocimiento, existe una leyenda sobre un tesoro llamado "One Process ", un poder que otorga a su poseedor el control absoluto sobre los procesos químicos e industriales. Se dice que aquel que logre dominar las variables de proceso podrá navegar por los mares de la ingeniería sin miedo a naufragar.\nTú, joven aprendiz, eres navegante en esta travesía. Para encontrar el One Process, deberás viajar a través de cinco islas legendarias, cada una custodiada por un guardián que pondrá a prueba tu ingenio y habilidades. ¿Serás capaz de superar los desafíos y convertirte en el Gran Monarca de los Procesos?',
+          title: '',
+          text: '',
           steps: [],
         },
         sidebarButtons: [
@@ -267,8 +274,8 @@ const modulesData = {
         image: "images/2.jpg",
         formUrl: "https://forms.gle/AsYBiHssKN7RQxXN9",
         content: {
-          title: "El Desafío de Calor'Bel",
-          text: "Los conceptos básicos incluyen la comprensión de variables controladas, manipuladas y de perturbación, así como los principios de retroalimentación y control automático.",
+          title: "",
+          text: "",
           steps: [],
         },
         sidebarButtons: [
@@ -286,8 +293,8 @@ const modulesData = {
         image: "images/3.jpg",
         formUrl: "https://forms.gle/w8AGxxd2VTMCaedr8",
         content: {
-          title: "Isla del gran flujo",
-          text: "Las herramientas incluyen sensores, transmisores, controladores y actuadores que permiten medir, procesar y controlar las variables del proceso.",
+          title: "",
+          text: "",
           steps: [],
         },
         sidebarButtons: [
@@ -304,8 +311,8 @@ const modulesData = {
         icon: "fas fa-ship",
         image: "images/5.jpg",
         content: {
-          title: "Isla de la concentración",
-          text: "La preparación incluye el diseño del sistema, calibración de instrumentos y establecimiento de procedimientos operativos.",
+          title: "",
+          text: "",
           steps: [],
         },
         sidebarButtons: [
@@ -322,8 +329,8 @@ const modulesData = {
         icon: "fas fa-compass",
         image: "images/8.jpg",
         content: {
-          title: "Isla del Gran Saber",
-          text: "La implementación involucra la puesta en marcha del sistema, ajuste de parámetros y optimización del rendimiento.",
+          title: "",
+          text: "",
           steps: [],
         },
         sidebarButtons: [
@@ -340,156 +347,109 @@ const modulesData = {
     topics: [
       {
         id: 1,
-        title: "TORMENTAS",
+        title: "Tu misión  ",
         icon: "fas fa-bolt",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/10.jpeg",
         content: {
-          title: "Navegando en Tormentas",
-          text: "Las tormentas representan uno de los mayores desafíos para cualquier pirata. Aprender a navegar en condiciones adversas requiere técnicas especiales, conocimiento meteorológico y valentía.",
+          title: "",
+          text: "",
           steps: [
-            "a. Identificación temprana de señales de tormenta.",
-            "b. Técnicas de navegación en condiciones de baja visibilidad.",
-            "c. Protocolos de seguridad durante tormentas severas.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "tipos-tormentas", label: "Tipos de Tormentas", icon: "fas fa-cloud-rain", type: "content" },
-          { id: "preparacion", label: "Preparación", icon: "fas fa-hard-hat", type: "content" },
-          { id: "supervivencia", label: "Supervivencia", icon: "fas fa-life-ring", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" },
+          { id: "que-es", label: 'Leyenda "Monarca de los procesos"', icon: "fas fa-question-circle", type: "content" },
+          { id: "video-brc", label: 'Balances con Reacción química', icon: "fas fa-bullseye", type: "content" },
         ],
       },
       {
         id: 2,
-        title: "BATALLAS NAVALES",
+        title: "Grados de libertad",
         icon: "fas fa-sword",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/12.jpeg",
         content: {
-          title: "Estrategias de Combate Marino",
-          text: "Las batallas navales requieren estrategia, coordinación y conocimiento táctico. Los piratas deben dominar el arte del combate en alta mar.",
+          title: "",
+          text: "",
           steps: [
-            "a. Formaciones de combate y maniobras tácticas.",
-            "b. Uso efectivo de armamento naval.",
-            "c. Técnicas de abordaje y combate cuerpo a cuerpo.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "estrategias", label: "Estrategias", icon: "fas fa-chess", type: "content" },
-          { id: "armamento", label: "Armamento", icon: "fas fa-bomb", type: "content" },
-          { id: "tacticas", label: "Tácticas", icon: "fas fa-fist-raised", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" },
+          { id: "que-es", label: "Grados de libertad", icon: "fas fa-question-circle", type: "content" },
         ],
       },
       {
         id: 3,
-        title: "MONSTRUOS MARINOS",
+        title: "Velocidad de reacción",
         icon: "fas fa-dragon",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/13.jpeg",
         content: {
-          title: "Enfrentando Criaturas del Abismo",
-          text: "Los océanos albergan criaturas misteriosas y peligrosas. Los piratas deben estar preparados para enfrentar desde krakens gigantes hasta sirenas encantadoras.",
+          title: "",
+          text: "",
           steps: [
-            "a. Identificación de diferentes tipos de criaturas marinas.",
-            "b. Estrategias de evasión y confrontación.",
-            "c. Uso de amuletos y protecciones místicas.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "bestiario", label: "Bestiario", icon: "fas fa-dragon", type: "content" },
-          { id: "defensas", label: "Defensas", icon: "fas fa-shield-alt", type: "content" },
-          { id: "leyendas", label: "Leyendas", icon: "fas fa-scroll", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" },
+          { id: "que-es", label: "Velocidad de reacción", icon: "fas fa-question-circle", type: "content" },
         ],
       },
       {
         id: 4,
-        title: "NAVEGACIÓN NOCTURNA",
+        title: "Conversión",
         icon: "fas fa-moon",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/14.jpeg",
         content: {
-          title: "Secretos de la Navegación Nocturna",
-          text: "La navegación nocturna presenta desafíos únicos pero también oportunidades especiales. Los piratas expertos pueden usar la oscuridad para movimientos sigilosos.",
+          title: "",
+          text: "",
           steps: [
-            "a. Uso de constelaciones para navegación.",
-            "b. Técnicas de navegación silenciosa.",
-            "c. Aprovechamiento de corrientes nocturnas.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "constelaciones", label: "Constelaciones", icon: "fas fa-star", type: "content" },
-          { id: "sigilo", label: "Técnicas de Sigilo", icon: "fas fa-user-ninja", type: "content" },
-          { id: "peligros", label: "Peligros Nocturnos", icon: "fas fa-exclamation-triangle", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" }, // ARREGLADO: Cambié de "content" a "test"
+          { id: "que-es", label: "Conversión", icon: "fas fa-question-circle", type: "content" },
         ],
       },
       {
         id: 5,
-        title: "SUPERVIVENCIA",
+        title: "Reactivo límite y en exceso",
         icon: "fas fa-life-ring",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/15.jpeg",
         content: {
-          title: "Técnicas de Supervivencia Marina",
-          text: "La supervivencia en el mar requiere conocimientos especializados sobre obtención de agua dulce, pesca y navegación de emergencia.",
+          title: "",
+          text: "",
           steps: [
-            "a. Obtención y purificación de agua en el mar.",
-            "b. Técnicas de pesca y obtención de alimentos.",
-            "c. Construcción de refugios flotantes de emergencia.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "agua-alimento", label: "Agua y Alimento", icon: "fas fa-utensils", type: "content" },
-          { id: "refugio", label: "Refugio", icon: "fas fa-home", type: "content" },
-          { id: "rescate", label: "Señales de Rescate", icon: "fas fa-flag", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" },
+          { id: "que-es", label: "Reactivo límite y en exceso", icon: "fas fa-question-circle", type: "content" },
         ],
       },
       {
         id: 6,
-        title: "SUPERVIVENCIA",
+        title: "Selectividad y Rendimiento Fraccional",
         icon: "fas fa-life-ring",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/16.jpeg",
         content: {
-          title: "Técnicas de Supervivencia Marina",
-          text: "La supervivencia en el mar requiere conocimientos especializados sobre obtención de agua dulce, pesca y navegación de emergencia.",
+          title: "",
+          text: "",
           steps: [
-            "a. Obtención y purificación de agua en el mar.",
-            "b. Técnicas de pesca y obtención de alimentos.",
-            "c. Construcción de refugios flotantes de emergencia.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "agua-alimento", label: "Agua y Alimento", icon: "fas fa-utensils", type: "content" },
-          { id: "refugio", label: "Refugio", icon: "fas fa-home", type: "content" },
-          { id: "rescate", label: "Señales de Rescate", icon: "fas fa-flag", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" },
+          { id: "que-es", label: "Selectividad y Rendimiento Fraccional", icon: "fas fa-question-circle", type: "content" },
         ],
       },
       {
         id: 7,
-        title: "SUPERVIVENCIA",
+        title: "Balance Elemental",
         icon: "fas fa-life-ring",
-        image: "/placeholder.svg?height=90&width=90",
+        image: "images2/17.jpeg",
         content: {
-          title: "Técnicas de Supervivencia Marina",
-          text: "La supervivencia en el mar requiere conocimientos especializados sobre obtención de agua dulce, pesca y navegación de emergencia.",
+          title: "",
+          text: "",
           steps: [
-            "a. Obtención y purificación de agua en el mar.",
-            "b. Técnicas de pesca y obtención de alimentos.",
-            "c. Construcción de refugios flotantes de emergencia.",
           ],
         },
         sidebarButtons: [
-          { id: "que-es", label: "¿Qué es?", icon: "fas fa-question-circle", type: "content" },
-          { id: "agua-alimento", label: "Agua y Alimento", icon: "fas fa-utensils", type: "content" },
-          { id: "refugio", label: "Refugio", icon: "fas fa-home", type: "content" },
-          { id: "rescate", label: "Señales de Rescate", icon: "fas fa-flag", type: "content" },
-          { id: "test", label: "Realizar Test", icon: "fas fa-clipboard-check", type: "test" },
+          { id: "que-es", label: "Balance Elemental", icon: "fas fa-question-circle", type: "content" },
+          { id: "evaluacion", label: "Evaluación", icon: "fas fa-lightbulb", type: "content" },
         ],
       },
     ],
@@ -1759,19 +1719,19 @@ function getContentForButton(buttonId) {
           </tr>
           <tr>
             <td style="border: 1px solid #a76de0; padding: 8px;">°C → K</td>
-            <td style="border: 1px solid #a76de0; padding: 8px;">K = °C + 273.15</td>
+            <td style="border: 1px solid #a76de0; padding: 8px;">K = °C + 273,15</td>
           </tr>
           <tr>
             <td style="border: 1px solid #a76de0; padding: 8px;">K → °C</td>
-            <td style="border: 1px solid #a76de0; padding: 8px;">°C = K - 273.15</td>
+            <td style="border: 1px solid #a76de0; padding: 8px;">°C = K - 273,15</td>
           </tr>
           <tr>
             <td style="border: 1px solid #a76de0; padding: 8px;">°F → K</td>
-            <td style="border: 1px solid #a76de0; padding: 8px;">K = 5/9 (°F - 32) + 273.15</td>
+            <td style="border: 1px solid #a76de0; padding: 8px;">K = 5/9 (°F - 32) + 273,15</td>
           </tr>
           <tr>
             <td style="border: 1px solid #a76de0; padding: 8px;">K → °F</td>
-            <td style="border: 1px solid #a76de0; padding: 8px;">°F = 9/5 (K - 273.15) + 32</td>
+            <td style="border: 1px solid #a76de0; padding: 8px;">°F = 9/5 (K - 273,15) + 32</td>
           </tr>
         </tbody>
       </table>`,
@@ -1954,191 +1914,115 @@ function getContentForButton(buttonId) {
 
     // ========== MÓDULO 2 - TEMA 1 (TORMENTAS) ==========
     "2-1-que-es": {
-      title: "Navegando en Tormentas Marinas",
-      text: "Las tormentas representan uno de los mayores desafíos para cualquier navegante. Requieren técnicas especiales, conocimiento meteorológico y preparación mental para enfrentarlas con éxito.",
-      steps: [
-        "a. Identificación temprana de señales de tormenta",
-        "b. Técnicas de navegación en condiciones de baja visibilidad",
-        "c. Protocolos de seguridad durante tormentas severas",
-      ],
+      title: 'Leyenda "Monarca de los procesos"',
+      text: `En el vasto océano del Nuevo Mundo, la tripulación de los balanceadores descubre un misterioso laboratorio flotante perteneciente 
+      a los guardianes del equilibrio químico. Se dice que estos científicos descubrieron la fórmula secreta para fabricar un combustible revolucionario 
+      capaz de potenciar cualquier barco y hacerlo más veloz.<br><br>Sin embargo, el laboratorio está protegido por acertijos químicos que solo los más astutos pueden resolver. 
+      Tú y tu tripulación necesitarán aplicar sus conocimientos sobre balance con reacción química para desbloquear los secretos de los guardianes y obtener la fórmula antes que la Marina o los Piratas de Barbanegra lo hagan.`,
+      steps: [],
+      image: "images2/11.jpeg",
     },
-    "2-1-tipos-tormentas": {
-      title: "Tipos de Tormentas Marinas",
-      text: "Existen diferentes tipos de tormentas marinas, cada una con características específicas que requieren estrategias de navegación particulares y preparación especializada.",
-      steps: [
-        "a. Tormentas tropicales y huracanes de gran intensidad",
-        "b. Tormentas de viento del norte (Nortes) y frentes fríos",
-        "c. Tormentas eléctricas localizadas y chubascos",
-      ],
-    },
-    "2-1-preparacion": {
-      title: "Preparación para Tormentas",
-      text: "La preparación adecuada antes de enfrentar una tormenta puede ser la diferencia entre el éxito y el desastre en alta mar. Incluye aspectos técnicos y logísticos.",
-      steps: [
-        "a. Revisión completa del equipo de seguridad y navegación",
-        "b. Planificación de rutas alternativas y refugios",
-        "c. Comunicación con autoridades marítimas y servicios de rescate",
-      ],
-    },
-    "2-1-supervivencia": {
-      title: "Técnicas de Supervivencia",
-      text: "Las técnicas de supervivencia durante tormentas incluyen maniobras específicas de navegación y uso adecuado del equipo de emergencia para preservar vidas.",
-      steps: [
-        "a. Técnicas de capeo y navegación defensiva",
-        "b. Uso de anclas de capa y drogues para estabilización",
-        "c. Procedimientos de abandono de embarcación y rescate",
-      ],
+    "2-1-video-brc": {
+      title: 'Balances con Reacción química',
+      text: ``,
+      steps: [],
+      video: "https://www.youtube.com/embed/thWBtOutRgo",
     },
 
     // ========== MÓDULO 2 - TEMA 2 (BATALLAS NAVALES) ==========
     "2-2-que-es": {
-      title: "Estrategias de Combate Marino",
-      text: "Las batallas navales requieren estrategia, coordinación y conocimiento táctico. Los navegantes deben dominar el arte del combate en alta mar para proteger sus embarcaciones.",
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/4.PNG" alt="Grados de libertad" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
+        <i>Figura: Explicación de Grados de libertad.</i>
+      </p>
+      </div>`,
       steps: [
-        "a. Formaciones de combate y maniobras tácticas",
-        "b. Uso efectivo de armamento naval",
-        "c. Técnicas de abordaje y combate cuerpo a cuerpo",
       ],
     },
-    "2-2-estrategias": {
-      title: "Estrategias Tácticas Navales",
-      text: "Las estrategias tácticas navales han evolucionado a lo largo de la historia, adaptándose a nuevas tecnologías y condiciones de combate marítimo.",
-      steps: [
-        "a. Maniobras de flanqueo y envolvimiento táctico",
-        "b. Uso del viento y corrientes como ventaja estratégica",
-        "c. Coordinación de ataques múltiples y formaciones",
-      ],
-    },
-    "2-2-armamento": {
-      title: "Armamento Naval Especializado",
-      text: "El conocimiento del armamento naval es esencial para cualquier combate marítimo, desde cañones tradicionales hasta armas modernas de precisión.",
-      steps: [
-        "a. Cañones de diferentes calibres y alcances efectivos",
-        "b. Armas de abordaje: sables, pistolas y mosquetes",
-        "c. Armamento defensivo: escudos y armaduras protectoras",
-      ],
-    },
-    "2-2-tacticas": {
-      title: "Tácticas de Combate Naval",
-      text: "Las tácticas de combate naval incluyen tanto maniobras ofensivas como defensivas, adaptadas a diferentes tipos de embarcaciones y condiciones.",
-      steps: [
-        "a. Tácticas de línea de batalla y formaciones cerradas",
-        "b. Ataques sorpresa y emboscadas estratégicas",
-        "c. Maniobras de retirada estratégica y reagrupamiento",
-      ],
-    },
-
+    
     // ========== MÓDULO 2 - TEMA 3 (MONSTRUOS MARINOS) ==========
     "2-3-que-es": {
-      title: "Enfrentando Criaturas del Abismo",
-      text: "Los océanos albergan criaturas misteriosas y peligrosas. Los navegantes deben estar preparados para enfrentar desde krakens gigantes hasta sirenas encantadoras.",
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/5.PNG" alt="Velocidad de reacción" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
+        <i>Figura: Explicación de Velocidad de reacción.</i>
+      </p>
+      </div>`,
       steps: [
-        "a. Identificación de diferentes tipos de criaturas marinas",
-        "b. Estrategias de evasión y confrontación",
-        "c. Uso de amuletos y protecciones místicas",
       ],
     },
-    "2-3-bestiario": {
-      title: "Bestiario Marino Completo",
-      text: "El bestiario marino incluye una amplia variedad de criaturas, desde las más comunes hasta las legendarias, cada una con características y peligros únicos.",
-      steps: [
-        "a. Kraken: pulpos gigantes con tentáculos destructivos",
-        "b. Sirenas: criaturas encantadoras con cantos hipnóticos",
-        "c. Leviatanes: serpientes marinas de proporciones colosales",
-      ],
-    },
-    "2-3-defensas": {
-      title: "Sistemas de Defensa Contra Criaturas",
-      text: "Los sistemas de defensa incluyen tanto métodos físicos como místicos para protegerse de las criaturas marinas más peligrosas.",
-      steps: [
-        "a. Arpones especializados y redes de acero reforzado",
-        "b. Amuletos protectores y talismanes ancestrales",
-        "c. Técnicas de camuflaje y navegación sigilosa",
-      ],
-    },
-    "2-3-leyendas": {
-      title: "Leyendas y Mitos Marinos",
-      text: "Las leyendas marinas contienen sabiduría ancestral sobre criaturas del mar, transmitida de generación en generación entre navegantes experimentados.",
-      steps: [
-        "a. Relatos históricos de encuentros documentados",
-        "b. Rituales de protección y ceremonias marinas",
-        "c. Mapas de zonas peligrosas y avistamientos",
-      ],
-    },
-
+    
     // ========== MÓDULO 2 - TEMA 4 (NAVEGACIÓN NOCTURNA) ==========
     "2-4-que-es": {
-      title: "Secretos de la Navegación Nocturna",
-      text: "La navegación nocturna presenta desafíos únicos pero también oportunidades especiales. Los navegantes expertos pueden usar la oscuridad para movimientos sigilosos.",
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/6.PNG" alt="Conversión" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
+        <i>Figura: Explicación de Conversión.</i>
+      </p>
+      </div>`,
       steps: [
-        "a. Uso de constelaciones para navegación",
-        "b. Técnicas de navegación silenciosa",
-        "c. Aprovechamiento de corrientes nocturnas",
       ],
     },
-    "2-4-constelaciones": {
-      title: "Navegación por Constelaciones",
-      text: "Las constelaciones han sido la guía principal de los navegantes durante milenios, proporcionando referencias precisas para la orientación nocturna.",
-      steps: [
-        "a. Identificación de constelaciones principales: Osa Mayor, Cruz del Sur",
-        "b. Cálculo de posición usando la Estrella Polar",
-        "c. Navegación estacional según movimiento de constelaciones",
-      ],
-    },
-    "2-4-sigilo": {
-      title: "Técnicas de Navegación Sigilosa",
-      text: "La navegación sigilosa permite movimientos no detectados durante la noche, utilizando técnicas especiales para minimizar ruido y visibilidad.",
-      steps: [
-        "a. Reducción de ruido: velas silenciosas y remos amortiguados",
-        "b. Camuflaje visual: pinturas oscuras y luces mínimas",
-        "c. Aprovechamiento de sombras y condiciones meteorológicas",
-      ],
-    },
-    "2-4-peligros": {
-      title: "Peligros de la Navegación Nocturna",
-      text: "La navegación nocturna presenta riesgos únicos que requieren preparación especial y técnicas de mitigación para garantizar la seguridad.",
-      steps: [
-        "a. Colisiones con obstáculos no visibles",
-        "b. Desorientación y pérdida de rumbo",
-        "c. Encuentros con criaturas nocturnas peligrosas",
-      ],
-    },
-
-    // ========== MÓDULO 2 - TEMA 5 (SUPERVIVENCIA) ==========
+    
+    // ========== MÓDULO 2 - TEMA 5 ==========
     "2-5-que-es": {
-      title: "Técnicas de Supervivencia Marina",
-      text: "La supervivencia en el mar requiere conocimientos especializados sobre obtención de agua dulce, pesca y navegación de emergencia en condiciones extremas.",
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/7.PNG" alt="Reactivo límite y en exceso" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
+        <i>Figura: Explicación de reactivo límite y en exceso.</i>
+      </p>
+      </div>`,
       steps: [
-        "a. Obtención y purificación de agua en el mar",
-        "b. Técnicas de pesca y obtención de alimentos",
-        "c. Construcción de refugios flotantes de emergencia",
       ],
     },
-    "2-5-agua-alimento": {
-      title: "Obtención de Agua y Alimento",
-      text: "La obtención de recursos básicos en el mar es fundamental para la supervivencia, requiriendo técnicas especializadas y conocimiento del entorno marino.",
+    // ========== MÓDULO 2 - TEMA 6 ==========
+    "2-6-que-es": {
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/8.PNG" alt="Selectividad y Rendimiento Fraccional" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
+        <i>Figura: Explicación de Selectividad y Rendimiento Fraccional.</i>
+      </p>
+      </div>`,
       steps: [
-        "a. Destilación solar de agua de mar usando materiales básicos",
-        "b. Pesca con anzuelos improvisados y técnicas primitivas",
-        "c. Recolección de algas comestibles y plancton marino",
       ],
     },
-    "2-5-refugio": {
-      title: "Construcción de Refugios Marinos",
-      text: "Los refugios flotantes proporcionan protección contra elementos y depredadores, utilizando materiales disponibles y técnicas de construcción naval básica.",
+    // ========== MÓDULO 2 - TEMA 6 ==========
+    "2-7-que-es": {
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/9.PNG" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
+        <i>Figura: Explicación de Balance Elemental.</i>
+      </p>
+      </div>`,
       steps: [
-        "a. Balsas improvisadas con restos de naufragios",
-        "b. Refugios flotantes usando barriles y maderas",
-        "c. Sistemas de anclaje temporal y estabilización",
       ],
     },
-    "2-5-rescate": {
-      title: "Señales de Rescate y Comunicación",
-      text: "Las señales de rescate son cruciales para ser localizado por equipos de búsqueda, utilizando métodos visuales, sonoros y de comunicación.",
+    "2-7-evaluacion": {
+      title: "",
+      text: `<div style="text-align: center; max-width: 600px; margin: auto;">
+      <img src="images2/20.PNG" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      </div>
+      <div style="text-align: center; max-width: 600px; margin: auto; margin-top: 20px; border: 2px solid #333; border-radius: 10px; padding: 0px; background-color: #fff;">
+        <img src="images2/21.PNG" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block; margin-bottom: 10px;">
+        <img src="images2/22.PNG" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block;">
+      </div>
+      <div style="text-align: center; max-width: 600px; margin: auto; margin-top: 20px;">
+        <img src="images2/23.PNG" alt="Grados de Libertad" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      </div>
+      <br>
+      <div class="encuesta-container">
+      <button onclick="openFormModalWithUrl('https://forms.gle/amFUK74GvPvyyJcA8?embedded=true')" class="btn-encuesta">
+        📝 Haz clic aquí para registrar tus respuestas y asistencia
+      </button>
+      </div>`,
       steps: [
-        "a. Señales visuales: espejos, humo y banderas improvisadas",
-        "b. Señales sonoras: silbatos, golpes rítmicos y gritos coordinados",
-        "c. Comunicación por radio y dispositivos de emergencia",
       ],
     },
   }
