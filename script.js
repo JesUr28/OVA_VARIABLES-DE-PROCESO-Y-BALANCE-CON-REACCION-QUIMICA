@@ -1933,7 +1933,7 @@ function getContentForButton(buttonId) {
     "2-2-que-es": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/4.PNG" alt="Grados de libertad" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/4.png" alt="Grados de libertad" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       <p style="font-family: 'Comic Sans MS'; margin-top: 10px;">
         <i>Figura: Explicación de Grados de libertad.</i>
       </p>
@@ -2007,7 +2007,7 @@ function getContentForButton(buttonId) {
     "2-7-evaluacion": {
       title: "",
       text: `<div style="text-align: center; max-width: 600px; margin: auto;">
-      <img src="images2/20.PNG" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
+      <img src="images2/20.png" alt="Balance Elemental" style="width: 100%; border: 2px solid #333; border-radius: 10px;">
       </div>
       <div style="text-align: center; max-width: 600px; margin: auto; margin-top: 20px; border: 2px solid #333; border-radius: 10px; padding: 0px; background-color: #fff;">
         <img src="images2/21.png" alt="Grados de Libertad" style="width: 100%; border-radius: 10px; display: block; margin-bottom: 10px;">
